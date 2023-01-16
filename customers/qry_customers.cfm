@@ -21,6 +21,7 @@
         <cfquery name="getAllCountryCodes" datasource="#main_dsn#">
             SELECT CountryRegionCode AS CountryCode, Name AS CountryName, ModifiedDate AS CountryLastCHange
             FROM Person.CountryRegion
+            ORDER BY Name ASC
         </cfquery>
     <cfelse>
         <!--- get single customer record by using the ID/CustomerID from the database by this query --->
@@ -94,5 +95,6 @@
      <cfquery name="getAllCountryCodes" datasource="#main_dsn#">
         SELECT CountryRegionCode AS CountryCode, Name AS CountryName, ModifiedDate AS CountryLastCHange
         FROM Person.CountryRegion
+        ORDER BY Name ASC
     </cfquery>
 </cfif>

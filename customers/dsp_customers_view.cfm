@@ -34,8 +34,8 @@
             <table class="table border">
                 <thead class="table-custom">
                     <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                        <th nowrap>First Name</th>
+                        <th nowrap>Last Name</th>
                         <th>Phone</th>
                         <th>Email</th>
                         <th>Address</th>
