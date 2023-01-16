@@ -50,7 +50,10 @@
                     <a class="nav-link" href="#subscribe">Subscribe</a>
                   </li>
                   <li class="nav-item mx-3">
-                    <a class="nav-link active" href="index.cfm?fuseaction=ViewCustomers&showCustomers=all">Customers</a>
+                    <a class="nav-link " href="index.cfm?fuseaction=ViewCustomers&showCustomers=all">Customers</a>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <a class="nav-link " href="/suppliers/index.cfm?fuseaction=ViewSuppliers&showSuppliers=all">Suppliers</a>
                   </li>
                 </ul>
               </div>
