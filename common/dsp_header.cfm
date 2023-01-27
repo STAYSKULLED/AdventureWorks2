@@ -26,7 +26,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-              <a title="Logo" class="navbar-brand" href="/index.html">
+              <a title="Logo" class="navbar-brand" href="/index.cfm">
                   <img src="/images/logo.png" alt="">
               </a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,16 +35,16 @@
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                   <li class="nav-item mx-3">
-                    <a class="nav-link" aria-current="page" href="/index.html#">Home</a>
+                    <a class="nav-link" aria-current="page" href="/index.cfm#">Home</a>
                   </li>
                   <li class="nav-item mx-3">
-                    <a class="nav-link" href="/index.html#shoes">Shoes</a>
+                    <a class="nav-link" href="/index.cfm#shoes">Shoes</a>
                   </li>
                   <li class="nav-item mx-3">
-                    <a class="nav-link" href="/index.html#backpacks">Backpacks</a>
+                    <a class="nav-link" href="/index.cfm#backpacks">Backpacks</a>
                   </li>
                   <li class="nav-item mx-3">
-                    <a class="nav-link" href="/index.html#watches">Watches</a>
+                    <a class="nav-link" href="/index.cfm#watches">Watches</a>
                   </li>
                   <li class="nav-item mx-3">
                     <a class="nav-link" href="#subscribe">Subscribe</a>
@@ -54,6 +54,9 @@
                   </li>
                   <li class="nav-item mx-3">
                     <a class="nav-link " href="/suppliers/index.cfm?fuseaction=ViewSuppliers&showSuppliers=all">Suppliers</a>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <a class="nav-link" href="/employees/index.cfm?fuseaction=ViewEmployees&showEmployees=all">Employees</a>
                   </li>
                 </ul>
               </div>
