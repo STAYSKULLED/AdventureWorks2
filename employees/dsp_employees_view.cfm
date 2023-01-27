@@ -1,26 +1,26 @@
 <div class="container">
     <div class="border border-secondary text-center rounded p-3">
         <h1 class="title mb-0 fw-bold">
-            <cfif isDefined("showEmployee s") AND showEmployee s EQ "all">
-                Employee s
+            <cfif isDefined("showEmployees") AND showEmployees EQ "all">
+                Employees
             <cfelse>
-                <cfoutput query="getSingleEmployee sRecord">
-                    Employee  No. #Employee ID#
+                <cfoutput query="getSingleEmployeesRecord">
+                    Employee No. #EmployeeID#
                 </cfoutput>
             </cfif>
         </h1>
     </div>
     <div class="my-4 text-end">
-        <a href="index.cfm?fuseaction=AddNewEmployee " class="btn btn-primary">Add New Employee </a>
+        <a href="index.cfm?fuseaction=AddNewEmployee" class="btn btn-primary">Add New Employee</a>
     </div>
-    <cfif isDefined("showEmployee s") AND showEmployee s EQ "all">
+    <cfif isDefined("showEmployees") AND showEmployees EQ "all">
         <div>
-            <form action="index.cfm" method="POST" name="FilterEmployee sForm" class="row mx-0 mb-4 gap-3">
+            <form action="index.cfm" method="POST" name="FilterEmployeesForm" class="row mx-0 mb-4 gap-3">
                 <h4 class="p-0 fw-bold w-auto my-auto">Filter:</h4>
-                <input type="hidden" name="showEmployee s" value="all">
-                <input type="hidden" name="fuseaction" value="FilterEmployee s">
+                <input type="hidden" name="showEmployees" value="all">
+                <input type="hidden" name="fuseaction" value="FilterEmployees">
                 <cfoutput>
-                    <input class="form-control w-auto" size="1" name="SelectedLetter" placeholder="A-Z" maxlength="1" title="First character of the Employee s last name (A-Z)" pattern="[A-Za-z]{1}" <cfif isDefined("SelectedLetter") AND SelectedLetter NEQ "">value="#SelectedLetter#"<cfelse>value="A"</cfif> style="text-transform:uppercase" required>
+                    <input class="form-control w-auto" size="1" name="SelectedLetter" placeholder="A-Z" maxlength="1" title="First character of the Employees last name (A-Z)" pattern="[A-Za-z]{1}" <cfif isDefined("SelectedLetter") AND SelectedLetter NEQ "">value="#SelectedLetter#"<cfelse>value="A"</cfif> style="text-transform:uppercase" required>
                 </cfoutput>
                 <select class="form-select w-auto" name="SelectedCountry">
                     <cfoutput query="getAllCountryCodes">
@@ -43,7 +43,7 @@
                     </tr>
                 </thead> 
                 <tbody>
-                    <cfoutput query="getAllEmployee sRecords">
+                    <cfoutput query="getAllEmployeesRecords">
                         <tr>
                             <td>
                                 #FirstName#
@@ -61,12 +61,12 @@
                                 #City#, #StateCode#
                             </td>
                             <td class="flex">
-                                <form action="index.cfm" method="POST" name="ViewEmployee Form_#Employee ID#" class="d-inline" title="See More">
-                                    <input type="hidden" name="fuseaction" value="ViewEmployee s">
-                                    <input type="hidden" name="Employee ID" value="#Employee ID#">
-                                    <input type="hidden" name="showEmployee s" value="single">
-                                    <input type="submit" class="d-none" id="viewEmployee Submit_#Employee ID#">
-                                    <label class="action-btn view-btn" for="viewEmployee Submit_#Employee ID#">
+                                <form action="index.cfm" method="POST" name="ViewEmployeeForm_#EmployeeID#" class="d-inline" title="See More">
+                                    <input type="hidden" name="fuseaction" value="ViewEmployees">
+                                    <input type="hidden" name="EmployeeID" value="#EmployeeID#">
+                                    <input type="hidden" name="showEmployees" value="single">
+                                    <input type="submit" class="d-none" id="viewEmployeeSubmit_#EmployeeID#">
+                                    <label class="action-btn view-btn" for="viewEmployeeSubmit_#EmployeeID#">
                                         <svg class="inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
@@ -74,11 +74,11 @@
                                     </label>
                                 </form>
 
-                                <form action="index.cfm" method="POST" name="EditEmployee Form_#Employee ID#" class="d-inline" title="Edit Employee ">
-                                    <input type="hidden" name="fuseaction" value="EditEmployee ">
-                                    <input type="hidden" name="Employee ID" value="#Employee ID#">
-                                    <input type="submit" class="d-none" id="editEmployee Submit_#Employee ID#">
-                                    <label class="action-btn edit-btn" for="editEmployee Submit_#Employee ID#">
+                                <form action="index.cfm" method="POST" name="EditEmployeeForm_#EmployeeID#" class="d-inline" title="Edit Employee">
+                                    <input type="hidden" name="fuseaction" value="EditEmployee">
+                                    <input type="hidden" name="EmployeeID" value="#EmployeeID#">
+                                    <input type="submit" class="d-none" id="editEmployeeSubmit_#EmployeeID#">
+                                    <label class="action-btn edit-btn" for="editEmployeeSubmit_#EmployeeID#">
                                         <svg class="inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                                         </svg>
@@ -86,10 +86,10 @@
                                 </form>
                                 
                                 <!--- Commented the delete function --->
-                                <!--- <form action="index.cfm" method="POST" name="DeleteEmployee Form_#Employee ID#" class="d-inline" id="DeleteEmployee Form_#Employee ID#">
-                                    <input type="hidden" name="fuseaction" value="DeleteEmployee ">
-                                    <input type="hidden" name="Employee ID" value="#Employee ID#">
-                                    <label class="action-btn delete-btn" id="delete-btn_#Employee ID#">
+                                <!--- <form action="index.cfm" method="POST" name="DeleteEmployeeForm_#EmployeeID#" class="d-inline" id="DeleteEmployeeForm_#EmployeeID#">
+                                    <input type="hidden" name="fuseaction" value="DeleteEmployee">
+                                    <input type="hidden" name="EmployeeID" value="#EmployeeID#">
+                                    <label class="action-btn delete-btn" id="delete-btn_#EmployeeID#">
                                         <svg class="inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                                         </svg>
@@ -97,14 +97,14 @@
                                 </form> --->
                                 <!--- <cfoutput> --->
                                     <!--- <script>
-                                        const deleteBtn_#Employee ID# = document.getElementById("delete-btn_#Employee ID#");
-                                        deleteBtn_#Employee ID#.onclick = () => {
+                                        const deleteBtn_#EmployeeID# = document.getElementById("delete-btn_#EmployeeID#");
+                                        deleteBtn_#EmployeeID#.onclick = () => {
                                             Swal.fire({
                                             position: 'center',
                                             allowEscapeKey: false,
                                             allowOutsideClick: false,
                                             icon: 'warning',
-                                            title: '<span style="color:##000">Are you sure you want to delete this employee ?</span>',
+                                            title: '<span style="color:##000">Are you sure you want to delete this employee?</span>',
                                             showConfirmButton: true,
                                             confirmButtonColor: "##ff6358",
                                             confirmButtonText: 'Confirm',
@@ -114,7 +114,7 @@
                                             focusCancel: true,
                                             }).then((result) => {
                                                 if (result.isConfirmed){
-                                                    document.getElementById("DeleteEmployee Form_#Employee ID#").submit();
+                                                    document.getElementById("DeleteEmployeeForm_#EmployeeID#").submit();
                                                 } else if (result.isDismissed){
                                                     Swal.close();
                                                 }
@@ -129,13 +129,13 @@
             </table>
         </div>
     <cfelse>
-        <cfoutput query="getSingleEmployee sRecord">
+        <cfoutput query="getSingleEmployeesRecord">
             <div class="flex text-end">
-                <form action="index.cfm" method="POST" name="EditEmployee Form_#Employee ID#" class="d-inline" title="Edit Employee ">
-                    <input type="hidden" name="fuseaction" value="EditEmployee ">
-                    <input type="hidden" name="Employee ID" value="#Employee ID#">
-                    <input type="submit" class="d-none" id="editEmployee Submit_#Employee ID#">
-                    <label class="action-btn edit-btn" for="editEmployee Submit_#Employee ID#">
+                <form action="index.cfm" method="POST" name="EditEmployeeForm_#EmployeeID#" class="d-inline" title="Edit Employee">
+                    <input type="hidden" name="fuseaction" value="EditEmployee">
+                    <input type="hidden" name="EmployeeID" value="#EmployeeID#">
+                    <input type="submit" class="d-none" id="editEmployeeSubmit_#EmployeeID#">
+                    <label class="action-btn edit-btn" for="editEmployeeSubmit_#EmployeeID#">
                         <svg class="inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                         </svg>
@@ -143,10 +143,10 @@
                 </form>
                 
                 <!--- Commented the delete function --->
-                <!--- <form action="index.cfm" method="POST" name="DeleteEmployee Form_#Employee ID#" class="d-inline" id="DeleteEmployee Form_#Employee ID#">
-                    <input type="hidden" name="fuseaction" value="DeleteEmployee ">
-                    <input type="hidden" name="Employee ID" value="#Employee ID#">
-                    <label class="action-btn delete-btn" id="delete-btn_#Employee ID#">
+                <!--- <form action="index.cfm" method="POST" name="DeleteEmployeeForm_#EmployeeID#" class="d-inline" id="DeleteEmployeeForm_#EmployeeID#">
+                    <input type="hidden" name="fuseaction" value="DeleteEmployee">
+                    <input type="hidden" name="EmployeeID" value="#EmployeeID#">
+                    <label class="action-btn delete-btn" id="delete-btn_#EmployeeID#">
                         <svg class="inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                         </svg>
@@ -154,14 +154,14 @@
                 </form> --->
                 <!--- <cfoutput> --->
                     <!--- <script>
-                        const deleteBtn_#Employee ID# = document.getElementById("delete-btn_#Employee ID#");
-                        deleteBtn_#Employee ID#.onclick = () => {
+                        const deleteBtn_#EmployeeID# = document.getElementById("delete-btn_#EmployeeID#");
+                        deleteBtn_#EmployeeID#.onclick = () => {
                             Swal.fire({
                             position: 'center',
                             allowEscapeKey: false,
                             allowOutsideClick: false,
                             icon: 'warning',
-                            title: '<span style="color:##000">Are you sure you want to delete this employee ?</span>',
+                            title: '<span style="color:##000">Are you sure you want to delete this employee?</span>',
                             showConfirmButton: true,
                             confirmButtonColor: "##ff6358",
                             confirmButtonText: 'Confirm',
@@ -171,7 +171,7 @@
                             focusCancel: true,
                             }).then((result) => {
                                 if (result.isConfirmed){
-                                    document.getElementById("DeleteEmployee Form_#Employee ID#").submit();
+                                    document.getElementById("DeleteEmployeeForm_#EmployeeID#").submit();
                                 } else if (result.isDismissed){
                                     Swal.close();
                                 }
@@ -319,7 +319,7 @@
                     </tbody>
                 </table>
                 <div>
-                    <a href="/employee s/index.cfm?fuseaction=ViewEmployee s&showEmployee s=all" class="btn btn-secondary">Go Back</a>
+                    <a href="/employees/index.cfm?fuseaction=ViewEmployees&showEmployees=all" class="btn btn-secondary">Go Back</a>
                 </div>
             </div>
         </cfoutput>

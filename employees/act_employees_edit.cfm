@@ -1,2 +1,2 @@
-<!--- update single employee  record in the database --->
-<!--- <cfquery name="updateEmployee Record" datasource="##"></cfquery> --->
+<!--- update single employee record in the database --->
+<!--- <cfquery name="updateEmployeeRecord" datasource="##"></cfquery> --->

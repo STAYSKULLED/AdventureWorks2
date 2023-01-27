@@ -1,9 +1,9 @@
-<cfoutput query="getSingleEmployee sRecord">
+<cfoutput query="getSingleEmployeesRecord">
     <div class="container">
         <div class="border border-secondary text-center rounded p-3">
-            <h1 class="title mb-0 fw-bold">Edit Employee  No. #Employee ID#</h1>
+            <h1 class="title mb-0 fw-bold">Edit Employee No. #EmployeeID#</h1>
         </div>
-        <form action="index.cfm" method="POST" name="AddNewEmployee Form">
+        <form action="index.cfm" method="POST" name="AddNewEmployeeForm">
             <div class="table-responsive rounded mt-4">
                 <table class="table table-bordered">
                     <thead class="table-custom">
@@ -102,13 +102,13 @@
                     </tbody>
                 </table>
                 <div>
-                    <input type="hidden" name="Employee ID" value="#Employee ID#">
+                    <input type="hidden" name="EmployeeID" value="#EmployeeID#">
                     <cfoutput>
                         <input type="hidden" name="previousFuseaction" value="#fuseaction#">
                     </cfoutput>
-                    <input type="hidden" name="fuseaction" value="SaveEmployee ">
+                    <input type="hidden" name="fuseaction" value="SaveEmployee">
                     <button type="submit" class="btn btn-primary">Save</button>
-                    <a href="/employee s/index.cfm?fuseaction=ViewEmployee s&showEmployee s=all" class="btn btn-secondary ms-2">Go Back</a>
+                    <a href="/employees/index.cfm?fuseaction=ViewEmployees&showEmployees=all" class="btn btn-secondary ms-2">Go Back</a>
                 </div>
             </div>
         </form>
